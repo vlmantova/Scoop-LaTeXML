@@ -1,0 +1,35 @@
+{
+    "version": "0.8.8",
+    "description": "LaTeXML is a TeX & LaTeX to XML, HTML, MathML, ePub, JATS, ... converter",
+    "homepage": "https://math.nist.gov/~BMiller/LaTeXML/",
+    "license": "NIST-PD",
+    "url": "https://cpan.metacpan.org/authors/id/B/BR/BRMILLER/LaTeXML-0.8.8.tar.gz#/LaTeXML",
+    "hash": "7d2bbe2ce252baf86ba3f388cd0dec3aa4838f49d612b9ec7cc4ff88105badcc",
+    "depends": [
+        "perl",
+        "perl-Image-Size"
+    ],
+    "suggest": {
+        "ImageMagick": [ "ghostscript", "perl-Image-Magick" ]
+    },
+    "installer": {
+        "script": [
+            "Rename-Item (Join-Path $dir $fname) (Join-Path $dir \"$fname.tar.gz\")",
+            "cpanm \"$(Join-Path $dir \"$fname.tar.gz\")\" -l \"$dir\" --verbose --notest",
+            "Remove-Item (Join-Path $dir \"$fname.tar.gz\")"
+        ]
+    },
+    "bin": [
+        "bin\\latexml.bat",
+        "bin\\latexmlc.bat",
+        "bin\\latexmlfind.bat",
+        "bin\\latexmlmath.bat",
+        "bin\\latexmlpost.bat"
+    ],
+    "post_install": [
+        "Add-Path -Path \"$original_dir\\lib\" -TargetEnvVar PERL5LIB -Global:$global"
+    ],
+    "pre_uninstall": [
+        "Remove-Path -Path \"$dir\\lib\" -TargetEnvVar PERL5LIB -Global:$global"
+    ]
+}
