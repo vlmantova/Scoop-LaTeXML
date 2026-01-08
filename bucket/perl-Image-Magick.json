@@ -6,7 +6,8 @@
     "url": "https://cpan.metacpan.org/authors/id/J/JC/JCRISTY/Image-Magick-7.1.2-3.tar.gz#/Image-Magick",
     "hash": "dc6ee21aed560d36f36be608909344bd2e25d63ab5d959553401e02f5df28a6b",
     "depends": [
-        "imagemagick"
+        "imagemagick",
+        "perl"
     ],
     "installer": {
         "script": [

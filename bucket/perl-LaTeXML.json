@@ -19,8 +19,15 @@
             "Rename-Item (Join-Path $dir $fname) (Join-Path $dir \"$fname.tar.gz\")",
             "cpanm \"$(Join-Path $dir \"$fname.tar.gz\")\" -l \"$dir\" --verbose --notest",
             "Remove-Item (Join-Path $dir \"$fname.tar.gz\")",
-            "$env:PATH = $env:PATH -replace \"^$($perlCPath -replace '\\\\', '\\\\');\""
-        ]
+            "$env:PATH = $env:PATH -replace \"^$($perlCPath -replace '\\\\', '\\\\');\"",
+            "# $perlCPath needs to be in PATH for XML::LibXML to work!",
+            "foreach ($suffix in '', 'c', 'find', 'math', 'post') {",
+            "  $bin = \"$dir\\bin\\latexml$suffix.bat\"",
+            "  attrib -r \"$bin\"",
+            "  [System.IO.File]::WriteAllBytes($bin, ([byte[]][char[]](([regex]'@set').replace((Get-Content -Raw $bin),\"@set `\"PATH=$perlCPath;%PATH%`\"`n@set\",1))))",
+            "  attrib +r \"$bin\"",
+            "}"
+    ]
     },
     "bin": [
         "bin\\latexml.bat",
