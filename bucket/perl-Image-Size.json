@@ -19,10 +19,10 @@
     "bin": "bin\\imgsize.bat",
     "post_install": [
         "Add-Path -Path \"$dir\\lib\\perl5\" -TargetEnvVar PERL5LIB -Global:$Global",
-        "$env:PERL5LIB = $(Get-EnvVar -Name PERL5LIB -Global:$Global"
+        "$env:PERL5LIB = $(Get-EnvVar -Name PERL5LIB -Global:$Global)"
     ],
     "pre_uninstall": [
         "Remove-Path -Path \"$(currentdir $app)\\lib\\perl5\" -TargetEnvVar PERL5LIB -Global:$Global",
-        "$env:PERL5LIB = $(Get-EnvVar -Name PERL5LIB -Global:$Global"
+        "$env:PERL5LIB = $(Get-EnvVar -Name PERL5LIB -Global:$Global)"
     ]
 }
